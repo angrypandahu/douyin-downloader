@@ -37,8 +37,8 @@ json: True
 
 
 # 下载时间范围 (留空表示不限制时间)
-start_time: "2025-01-01"
-end_time: "2025-01-31"
+start_time: "2025-02-01"
+end_time: "2025-02-28"
 
 
 folderstyle: True # True -> 每个视频是一个单独的文件夹; False -> 所有视频共用一个文件夹
@@ -97,11 +97,11 @@ thread: 5
 # 目前只需要msToken、ttwid、odin_tt、passport_csrf_token、sid_guard
 # 可以动态添加, 程序会根据填的键查找，并没有写死, 如果抖音需要更多的cookie自己加上就行了
 cookies:
-  msToken: I_e5agx2XNcgNyiIhsATfAlffbPVldezZoXVG8ETc4xdyzvTH0owZqF-xYYJ9Hx05j7HrxzDexdHBHNk-y1bApZMX3u_mFJWa_W0hP_aOxn3SZBznPoUyeqU8iUzY4rW9fPD2JYifbNU8J2rlsexRu5_sAz5Jg6aLP1ZJEOAUNWQFioQesnlqw==
-  ttwid: 1%7CMh7fgLbq6Abszc77Y0EY9JJ3WZyW9OSbymUsYpxaoHk%7C1753153691%7Ca8fe1d789d77e9d470b493c5bbdf0488a3d46e3d2721fdd57e9c406aa04cb36f
-  odin_tt: ea7eb9c7904c27c02a240091bf0b22a14c32a23d5fdce3646f39d1552eb6a3a7b979be0021d800a6d311997f24727d42ef038e67f3c7ea9295fa326d8b3ab4ca
-  passport_csrf_token: 90cdc59751c4ed7eff747d0ab9aa3305
-  sid_guard: 96ae2a0b02f074b83f5eb018a7e5b323%7C1753153713%7C5183979%7CSat%2C+20-Sep-2025+03%3A08%3A12+GMT
+  msToken: GXj4yUoQHroRXPV4wbX2yMzhBwOwKi_5kM0If0GZDB-oKY_1VmEzahXq6Unp7HdtKVZgLZ-h4puYISDfftwYDzxbj0DiPLf7yyHGpIZqt8743HXzpCX0ZqH6uJvjAgw9xQFwM2YBt3XrLMqAtPFFYih85NDVN88M_xQOC1NTyo2TyzRs-GphtlE=
+  ttwid: 1%7Cen9hhAbZszj4XZwQw_77KxbHdIFqYcOpuBGXVDLEEHo%7C1753414743%7C76360a049ce6ae60a60375d4b30a0bc85dda7f871376e11fc85de3645c9b3662
+  odin_tt: c9b4dfe4d5e30f7143a8a5787d2d96291128e2dae794abd18576bf83d88ff04a8e424e93ef1fadfaca38a1cec8bdcab0f3c41c2589e3ddc39d43bf07bd117ef7
+  passport_csrf_token: 391abdb24c1b71dcc61aefc7f2fcdf79
+  sid_guard: 4c9b9ca6ddfbdf67b6d3fea813e0af19%7C1753264632%7C5184000%7CSun%2C+21-Sep-2025+09%3A57%3A12+GMT
 # cookie 请登录网页抖音后F12查看
 # cookies 和 cookie 二选一, 要使用这种形式, 请注释上面的cookies及包含的所有键值对
 # 设置了这个后上面的cookies选项自动失效, 这个优先级更高

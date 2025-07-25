@@ -82,26 +82,26 @@ class Douyin(object):
             key_type = "user"
         elif "/video/" in urlstr:
             # 获取作品 aweme_id
-            key = re.findall('video/(\d+)?', urlstr)[0]
+            key = re.findall(r'video/(\d+)?', urlstr)[0]
             key_type = "aweme"
         elif "/note/" in urlstr:
             # 获取note aweme_id
-            key = re.findall('note/(\d+)?', urlstr)[0]
+            key = re.findall(r'note/(\d+)?', urlstr)[0]
             key_type = "aweme"
         elif "/mix/detail/" in urlstr:
             # 获取合集 id
-            key = re.findall('/mix/detail/(\d+)?', urlstr)[0]
+            key = re.findall(r'/mix/detail/(\d+)?', urlstr)[0]
             key_type = "mix"
         elif "/collection/" in urlstr:
             # 获取合集 id
-            key = re.findall('/collection/(\d+)?', urlstr)[0]
+            key = re.findall(r'/collection/(\d+)?', urlstr)[0]
             key_type = "mix"
         elif "/music/" in urlstr:
             # 获取原声 id
-            key = re.findall('music/(\d+)?', urlstr)[0]
+            key = re.findall(r'music/(\d+)?', urlstr)[0]
             key_type = "music"
-        elif "/webcast/reflow/" in urlstr:
-            key1 = re.findall('reflow/(\d+)?', urlstr)[0]
+        elif "/reflow/" in urlstr:
+            key1 = re.findall(r'reflow/(\d+)?', urlstr)[0]
             url = self.urls.LIVE2 + utils.getXbogus(
                 f'live_id=1&room_id={key1}&app_id=1128')
             res = requests.get(url, headers=douyin_headers)
@@ -305,19 +305,30 @@ class Douyin(object):
 
                     try:
                         datadict = json.loads(res.text)
-                    except json.JSONDecodeError as e:
-                        self.console.print(f"[red]❌ JSON解析失败: {str(e)}[/]")
-                        self.console.print(f"[yellow]🔍 响应内容: {res.text[:500]}...[/]")
-                        self.console.print(f"[yellow]🔍 请求URL: {url}[/]")
-                        self.console.print(f"[yellow]🔍 模式: {mode}[/]")
-
-                        # 检查是否是空响应或权限问题
-                        if not res.text.strip():
-                            self.console.print(f"[yellow]💡 提示: {mode}模式可能需要特殊权限或该用户的{mode}列表不公开[/]")
-                        elif "登录" in res.text or "login" in res.text.lower():
-                            self.console.print(f"[yellow]💡 提示: {mode}模式需要登录状态[/]")
-                        elif "权限" in res.text or "permission" in res.text.lower():
-                            self.console.print(f"[yellow]💡 提示: {mode}模式权限不足[/]")
+                    except json.JSONDecodeError:
+                        # 可能是压缩响应，尝试手动解压
+                        content_encoding = res.headers.get('content-encoding', '').lower()
+                        if content_encoding == 'gzip':
+                            import gzip
+                            content = gzip.decompress(res.content).decode('utf-8')
+                            datadict = json.loads(content)
+                        elif content_encoding == 'br':
+                            try:
+                                import brotli
+                                content = brotli.decompress(res.content).decode('utf-8')
+                                datadict = json.loads(content)
+                            except ImportError:
+                                self.console.print("[red]❌ 需要安装brotli库来处理br压缩: pip install brotli[/]")
+                                raise
+                        else:
+                            self.console.print(f"[red]❌ JSON解析失败: 未知压缩格式或内容异常[/]")
+                            self.console.print(f"[yellow]�� 响应内容: {res.content[:500]}...[/]")
+                            self.console.print(f"[yellow]🔍 响应头: {dict(res.headers)}[/]")
+                            break
+                    except Exception as e:
+                        self.console.print(f"[red]❌ 解析响应内容时发生异常: {str(e)}[/]")
+                        self.console.print(f"[yellow]🔍 响应内容: {res.content[:500]}...[/]")
+                        self.console.print(f"[yellow]🔍 响应头: {dict(res.headers)}[/]")
                         break
                     
                     # 处理返回数据
