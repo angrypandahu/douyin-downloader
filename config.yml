@@ -12,20 +12,12 @@
 # 可以设置多个链接, 确保至少一个链接
 # 必选
 link:
-  # 测试用户主页下载（已知可以工作）
-  - https://www.douyin.com/user/MS4wLjABAAAA6O7EZyfDRYXxJrUTpf91K3tmB4rBROkAw-nYMfld8ss
-  # 测试单个视频下载
-  # - https://v.douyin.com/iRGu2mBL/
-  # -  https://v.douyin.com/kVefc81/
-  # -  https://v.douyin.com/kVdkdxY/
-  # -  https://v.douyin.com/kVdMcrr/
-  # -  https://v.douyin.com/iRGukBBk/
-  # -  https://v.douyin.com/iRGuJcW8/
-  # -  https://v.douyin.com/iRGHQY5t/
+  - https://www.douyin.com/user/MS4wLjABAAAA1DlAi6NHJOZ0etpiVVLEXCPHprI_BNMA1ZpkKMPA3sY
+
 
 # 下载保存位置, 默认当前文件位置
 # 必选
-path: ./Downloaded/
+path: /Users/hupanpan/zimeiti/download
 
 # 是否下载视频中的音乐(True/False), 默认为True
 # 可选
@@ -45,8 +37,8 @@ json: True
 
 
 # 下载时间范围 (留空表示不限制时间)
-start_time: ""
-end_time: ""
+start_time: "2025-01-01"
+end_time: "2025-01-31"
 
 
 folderstyle: True # True -> 每个视频是一个单独的文件夹; False -> 所有视频共用一个文件夹
@@ -72,13 +64,13 @@ mode:
 # 下载作品个数设置
 # 可选
 number:
-  post: 1     # 主页下作品下载个数设置, 默认为0 全部下载
+  post: 0     # 主页下作品下载个数设置, 默认为0 全部下载
   like: 3     # 主页下喜欢下载个数设置, 默认为0 全部下载
   allmix: 1   # 主页下合集下载个数设置, 默认为0 全部下载
   mix: 3      # 单个合集下作品下载个数设置, 默认为0 全部下载
   music: 3    # 音乐(原声)下作品下载个数设置, 默认为0 全部下载
 
-database: True # 如果不使用数据库, 增量更新将不可用
+database: false # 如果不使用数据库, 增量更新将不可用
 
 
 
@@ -90,11 +82,11 @@ database: True # 如果不使用数据库, 增量更新将不可用
 # 情况4: 当获取主页所有mix时(mode是mix模式)比较特殊, number(allmix) 控制下载多少个合集, increase(allmix) 对每个合集进行增量更新
 # 可选
 increase:
-  post: False     # 是否开启主页作品增量下载(True/False), 默认为False
-  like: False     # 是否开启主页喜欢增量下载(True/False), 默认为False
-  allmix: False   # 是否开启主页合集增量下载(True/False), 默认为False
-  mix: False      # 是否开启单个合集下作品增量下载(True/False), 默认为False
-  music: False    # 是否开启音乐(原声)下作品增量下载(True/False), 默认为False
+  post: True     # 是否开启主页作品增量下载(True/False), 默认为False
+  like: True     # 是否开启主页喜欢增量下载(True/False), 默认为False
+  allmix: True   # 是否开启主页合集增量下载(True/False), 默认为False
+  mix: True      # 是否开启单个合集下作品增量下载(True/False), 默认为False
+  music: True    # 是否开启音乐(原声)下作品增量下载(True/False), 默认为False
 
 # 设置线程数, 默认5个线程
 # 可选
@@ -105,18 +97,11 @@ thread: 5
 # 目前只需要msToken、ttwid、odin_tt、passport_csrf_token、sid_guard
 # 可以动态添加, 程序会根据填的键查找，并没有写死, 如果抖音需要更多的cookie自己加上就行了
 cookies:
-  # msToken: xxx
-  # ttwid: xxx
-  # odin_tt: xxx
-  # passport_csrf_token: xxx
-  # sid_guard: xxx
-
-  msToken: 710-fIIacqPfoNUNM8EKjH2ev0veFV2YZCtCfs_HoN7kjpBKubLAODdh0nStKywolHK2nsJFHmdimUN23q-lo41pxjuiNMoqG1p_yUoIKU0CJ9bX-Q0638LXozcxspQnrzDnHB4M_3Hu3GljVuPYvv-8nHrxp4Xqkw-Bcr0MeothxDuPtHlEBA==
-  ttwid: 1%7Cxo2A_Uas39HcSPeQYZRGlCLpHonxCq5l8gMlrUPsh3I%7C1733400452%7C9f770c01cd093794153133a14108c93b5b6e6e18971372c21ecffe37f1938da0
-  odin_tt: a19f20351de5ed35a078f09115d098328b025656113ec0e35dfc4f7e1cf04dea5edd7d8176cf7070e0ff8f53414adeb8
-  passport_csrf_token: c2a7091feddce96551be4436e03ca3f3
-  sid_guard: 5e5adf6c506e880b1e0959afb5f6cb80%7C1739188609%7C5183984%7CFri%2C+11-Apr-2025+11%3A56%3A33+GMT
-
+  msToken: I_e5agx2XNcgNyiIhsATfAlffbPVldezZoXVG8ETc4xdyzvTH0owZqF-xYYJ9Hx05j7HrxzDexdHBHNk-y1bApZMX3u_mFJWa_W0hP_aOxn3SZBznPoUyeqU8iUzY4rW9fPD2JYifbNU8J2rlsexRu5_sAz5Jg6aLP1ZJEOAUNWQFioQesnlqw==
+  ttwid: 1%7CMh7fgLbq6Abszc77Y0EY9JJ3WZyW9OSbymUsYpxaoHk%7C1753153691%7Ca8fe1d789d77e9d470b493c5bbdf0488a3d46e3d2721fdd57e9c406aa04cb36f
+  odin_tt: ea7eb9c7904c27c02a240091bf0b22a14c32a23d5fdce3646f39d1552eb6a3a7b979be0021d800a6d311997f24727d42ef038e67f3c7ea9295fa326d8b3ab4ca
+  passport_csrf_token: 90cdc59751c4ed7eff747d0ab9aa3305
+  sid_guard: 96ae2a0b02f074b83f5eb018a7e5b323%7C1753153713%7C5183979%7CSat%2C+20-Sep-2025+03%3A08%3A12+GMT
 # cookie 请登录网页抖音后F12查看
 # cookies 和 cookie 二选一, 要使用这种形式, 请注释上面的cookies及包含的所有键值对
 # 设置了这个后上面的cookies选项自动失效, 这个优先级更高
